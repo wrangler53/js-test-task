@@ -11,3 +11,10 @@ export const fetchUsers = async () => {
   const response = await axiosInstance.get(usersEndpoint);
   return response.data;
 };
+
+export const deleteUser = async userId => {
+  const deleteUserEndpoint = `${usersEndpoint}/${userId}`;
+
+  const response = await axiosInstance.delete(deleteUserEndpoint);
+  return response.data;
+};

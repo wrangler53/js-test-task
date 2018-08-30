@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import TableRow from '../TableRow/TableRow';
 
-import {fetchUsers} from '../../api/api';
+import {fetchUsers, deleteUser} from '../../api/api';
 
 class Table extends Component {
   state = {
@@ -18,6 +18,21 @@ class Table extends Component {
         console.log(err);
       });
   }
+
+  deleteUserHandler = (event, userId) => {
+    event.preventDefault();
+
+    deleteUser(userId)
+      .then(() => {
+        const newUsersList = [...this.state.users].filter(
+          user => user.id !== userId,
+        );
+        this.setState({users: newUsersList});
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
@@ -35,7 +50,11 @@ class Table extends Component {
           </thead>
           <tbody className="form__body">
             {this.state.users.map(user => (
-              <TableRow key={user.id} user={user} />
+              <TableRow
+                key={user.id}
+                user={user}
+                deleteUser={this.deleteUserHandler}
+              />
             ))}
           </tbody>
         </form>
