@@ -7,7 +7,7 @@ const TableRow = ({user, deleteUser}) => (
     <td>{user.dob}</td>
     <td>{user.location}</td>
     <td>
-      <button onClick={event => deleteUser(event, user.id)}>Delete</button>
+      <button onClick={deleteUser}>Delete</button>
     </td>
   </tr>
 );
