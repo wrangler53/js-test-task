@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Table from './Table/Table';
 
 class App extends Component {
   state = {};
@@ -6,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Code here</h1>
+        <Table />
       </div>
     );
   }
