@@ -10,24 +10,24 @@ class Summary extends Component {
 
   // calculate sum of three oldest users ages
   userAges = () => {
-    const todayDate = new Date();
-    const todayYear = todayDate.getFullYear();
-    const todayMonth = todayDate.getMonth() + 1;
-    const todayDay = todayDate.getDay() + 1;
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1;
+    const currentDay = currentDate.getDate();
 
     return this.props.usersList
       .map(user => {
         const userBirthDate = new Date(user.dob);
         const userBirthYear = userBirthDate.getFullYear();
         const userBirthMonth = userBirthDate.getMonth() + 1;
-        const userBirthDay = userBirthDate.getDay() + 1;
+        const userBirthDay = userBirthDate.getDate();
 
-        let userAge = todayYear - userBirthYear;
+        let userAge = currentYear - userBirthYear;
 
-        if (todayMonth < userBirthMonth) {
+        if (currentMonth < userBirthMonth) {
           userAge -= 1;
-        } else if (todayMonth === userBirthMonth) {
-          if (todayDay < userBirthDay) userAge -= 1;
+        } else if (currentMonth === userBirthMonth) {
+          if (currentDay < userBirthDay) userAge -= 1;
         }
 
         return userAge;
