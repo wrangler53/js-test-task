@@ -1,21 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import TableHeader from '../TableHeader/TableHeader';
 import TableRow from '../TableRow/TableRow';
 
 const Table = ({usersList, deleteUser}) => (
   <div className="container">
     <h2>Table</h2>
     <form className="form">
-      <thead className="form__header">
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>DOB</th>
-          <th>Location</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+      <TableHeader />
       <tbody className="form__body">
         {usersList.map(user => (
           <TableRow
