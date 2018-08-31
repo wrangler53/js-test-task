@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import formatDate from '../../helpers/formatDate';
 
 const TableRow = ({user, deleteUser}) => (
   <tr>
     <td>{user.first_name}</td>
     <td>{user.last_name}</td>
-    <td>{user.dob}</td>
+    <td>{formatDate(user.dob)}</td>
     <td>{user.location}</td>
     <td>
       <button onClick={deleteUser}>Delete</button>
