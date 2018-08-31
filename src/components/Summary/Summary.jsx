@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class Summary extends Component {
-  state = {};
-
+  // calculate count of users from city 'kiev' or 'Kiev
   usersCount = () =>
     this.props.usersList.filter(
       user => user.location === 'Kiev' || user.location === 'kiev',
     ).length;
 
+  // calculate sum of three oldest users ages
   userAges = () => {
     const todayDate = new Date();
     const todayYear = todayDate.getFullYear();
@@ -36,6 +37,9 @@ class Summary extends Component {
       .reduce((a, b) => a + b, 0);
   };
 
+  // find longest string of First Name + Last Name
+  longestString = () => {};
+
   render() {
     return (
       <div className="container">
@@ -51,12 +55,24 @@ class Summary extends Component {
           </div>
           <div className="longest-string">
             Longest string of first name + last name: <br />
-            {}
+            {this.longestString()}
           </div>
         </div>
       </div>
     );
   }
 }
+
+Summary.propTypes = {
+  usersList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      first_name: PropTypes.string,
+      last_name: PropTypes.string,
+      dob: PropTypes.string,
+      location: PropTypes.string,
+    }),
+  ).isRequired,
+};
 
 export default Summary;

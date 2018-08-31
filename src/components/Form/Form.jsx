@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Form = ({addUser, newUser, inputChanged}) => (
   <div className="container">
@@ -55,5 +56,17 @@ const Form = ({addUser, newUser, inputChanged}) => (
     </form>
   </div>
 );
+
+Form.propTypes = {
+  addUser: PropTypes.func.isRequired,
+  newUser: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    first_name: PropTypes.string,
+    last_name: PropTypes.string,
+    dob: PropTypes.string,
+    location: PropTypes.string,
+  }).isRequired,
+  inputChanged: PropTypes.func.isRequired,
+};
 
 export default Form;

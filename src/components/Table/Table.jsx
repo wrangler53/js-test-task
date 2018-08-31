@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TableRow from '../TableRow/TableRow';
 
@@ -27,5 +28,18 @@ const Table = ({usersList, deleteUser}) => (
     </form>
   </div>
 );
+
+Table.propTypes = {
+  usersList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      first_name: PropTypes.string,
+      last_name: PropTypes.string,
+      dob: PropTypes.string,
+      location: PropTypes.string,
+    }),
+  ).isRequired,
+  deleteUser: PropTypes.func.isRequired,
+};
 
 export default Table;

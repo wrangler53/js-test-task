@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TableRow = ({user, deleteUser}) => (
   <tr>
@@ -11,5 +12,16 @@ const TableRow = ({user, deleteUser}) => (
     </td>
   </tr>
 );
+
+TableRow.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    first_name: PropTypes.string,
+    last_name: PropTypes.string,
+    dob: PropTypes.string,
+    location: PropTypes.string,
+  }).isRequired,
+  deleteUser: PropTypes.func.isRequired,
+};
 
 export default TableRow;
