@@ -60,7 +60,6 @@ const Form = ({addUser, newUser, inputChanged}) => (
 Form.propTypes = {
   addUser: PropTypes.func.isRequired,
   newUser: PropTypes.shape({
-    id: PropTypes.string.isRequired,
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     dob: PropTypes.string,

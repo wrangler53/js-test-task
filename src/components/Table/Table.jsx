@@ -7,9 +7,9 @@ import TableRow from '../TableRow/TableRow';
 const Table = ({usersList, deleteUser}) => (
   <div className="container">
     <h2>Table</h2>
-    <form className="form">
+    <table className="table">
       <TableHeader />
-      <tbody className="form__body">
+      <tbody className="table__body">
         {usersList.map(user => (
           <TableRow
             key={user.id}
@@ -18,7 +18,7 @@ const Table = ({usersList, deleteUser}) => (
           />
         ))}
       </tbody>
-    </form>
+    </table>
   </div>
 );
 
