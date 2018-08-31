@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {fetchUsers, deleteUser} from '../api/api';
 
 import Table from './Table/Table';
+import Summary from './Summary/Summary';
 
 class App extends Component {
   state = {
@@ -41,6 +42,7 @@ class App extends Component {
           usersList={this.state.users}
           deleteUser={this.deleteUserHandler}
         />
+        <Summary usersList={this.state.users} />
       </div>
     );
   }
