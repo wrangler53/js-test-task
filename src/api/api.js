@@ -12,6 +12,11 @@ export const fetchUsers = async () => {
   return response.data;
 };
 
+export const addUser = async user => {
+  const response = await axiosInstance.post(usersEndpoint, user);
+  return response.data;
+};
+
 export const deleteUser = async userId => {
   const deleteUserEndpoint = `${usersEndpoint}/${userId}`;
 

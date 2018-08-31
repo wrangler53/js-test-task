@@ -1,17 +1,25 @@
 import React, {Component} from 'react';
 
-import {fetchUsers, deleteUser} from '../api/api';
+import {fetchUsers, deleteUser, addUser} from '../api/api';
 
 import Table from './Table/Table';
 import Summary from './Summary/Summary';
+import Form from './Form/Form';
 
+const newUserObj = {
+  first_name: '',
+  last_name: '',
+  dob: '',
+  location: '',
+};
 class App extends Component {
   state = {
     users: [],
+    newUser: {...newUserObj},
   };
 
   componentDidMount() {
-    fetchUsers()
+    fetchUsers() // TODO: put it into another function
       .then(users => {
         this.setState({users});
       })
@@ -20,6 +28,7 @@ class App extends Component {
       });
   }
 
+  // Delete user
   deleteUserHandler = (event, userId) => {
     event.preventDefault();
 
@@ -35,6 +44,34 @@ class App extends Component {
       });
   };
 
+  // Add a new user
+  addUserHandler = event => {
+    event.preventDefault();
+
+    addUser(this.state.newUser)
+      .then(() => {
+        this.setState({newUser: {...newUserObj}});
+
+        fetchUsers()
+          .then(users => {
+            this.setState({users});
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  // Listen to changes in form fields
+  inputChangeHandler = event => {
+    const newUser = {...this.state.newUser};
+    newUser[event.target.name] = event.target.value;
+    this.setState({newUser});
+  };
+
   render() {
     return (
       <div>
@@ -43,6 +80,11 @@ class App extends Component {
           deleteUser={this.deleteUserHandler}
         />
         <Summary usersList={this.state.users} />
+        <Form
+          addUser={this.addUserHandler}
+          newUser={this.state.newUser}
+          inputChanged={this.inputChangeHandler}
+        />
       </div>
     );
   }
