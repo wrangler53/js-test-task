@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {fetchUsers, deleteUser, addUser} from '../api/api';
+import {fetchUsers, deleteUser, addUser, updateUser} from '../api/api';
 
 import Table from './Table/Table';
 import Summary from './Summary/Summary';
@@ -27,6 +27,10 @@ class App extends Component {
         console.log(err);
       });
   }
+  // Edit User
+  editUserHandler = user => {
+    console.log(user);
+  };
 
   // Delete user
   deleteUserHandler = (event, userId) => {
@@ -78,13 +82,14 @@ class App extends Component {
         <Table
           usersList={this.state.users}
           deleteUser={this.deleteUserHandler}
+          editUser={this.editUserHandler}
         />
-        <Summary usersList={this.state.users} />
         <Form
           addUser={this.addUserHandler}
           newUser={this.state.newUser}
           inputChanged={this.inputChangeHandler}
         />
+        <Summary usersList={this.state.users} />
       </div>
     );
   }
