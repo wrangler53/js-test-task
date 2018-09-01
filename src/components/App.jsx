@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import {fetchUsers, deleteUser, addUser, updateUser} from '../api/api';
+import {formatDateForEdit} from '../helpers/formatDate';
 
 import Table from './Table/Table';
 import Summary from './Summary/Summary';
@@ -32,6 +33,7 @@ class App extends Component {
   // Edit User
   fillForm = user => {
     const updatedUser = {...this.state.user};
+    user.dob = formatDateForEdit(user.dob);
     Object.assign(updatedUser, {...user});
     this.setState({user: updatedUser, isEditMode: true});
   };

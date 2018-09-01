@@ -1,4 +1,4 @@
-export const formatDate = date => {
+const formatter = date => {
   const newDate = new Date(date);
 
   const year = newDate.getFullYear();
@@ -8,12 +8,15 @@ export const formatDate = date => {
   if (month < 10) month = `0${month}`;
   if (day < 10) day = `0${day}`;
 
+  return {year, month, day};
+};
+
+export const formatDate = date => {
+  const {year, month, day} = formatter(date);
   return `${day}/${month}/${year}`;
 };
 
-export const formatDateForDB = date => {
-  const [day, month, year] = date.split('/');
-  return `${month}.${day}.${year}`;
+export const formatDateForEdit = date => {
+  const {year, month, day} = formatter(date);
+  return `${year}-${month}-${day}`;
 };
-
-export default formatDate;

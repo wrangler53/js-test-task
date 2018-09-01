@@ -38,10 +38,9 @@ const Form = ({addUser, editUser, user, inputChanged, isEditMode}) => {
         <div className="form__item">
           <label htmlFor="dob">Date of birth</label>
           <input
-            type="text"
+            type="date"
             name="dob"
             id="dob"
-            placeholder="mm/dd/yyyy"
             value={user.dob}
             onChange={event => inputChanged(event)}
           />
