@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import formatDate from '../../helpers/formatDate';
+import {formatDate} from '../../helpers/formatDate';
 
 const TableRow = ({user, deleteUser, fillForm}) => (
   <tr>

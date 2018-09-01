@@ -63,9 +63,7 @@ class App extends Component {
             isEditMode: false,
           });
 
-        this.setState({
-          users: newUsersList,
-        });
+        this.setState({users: newUsersList});
       })
       .catch(err => console.log(err));
   };

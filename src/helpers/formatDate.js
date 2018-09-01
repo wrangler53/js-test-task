@@ -1,4 +1,4 @@
-const formatDate = date => {
+export const formatDate = date => {
   const newDate = new Date(date);
 
   const year = newDate.getFullYear();
@@ -9,6 +9,11 @@ const formatDate = date => {
   if (day < 10) day = `0${day}`;
 
   return `${day}/${month}/${year}`;
+};
+
+export const formatDateForDB = date => {
+  const [day, month, year] = date.split('/');
+  return `${month}.${day}.${year}`;
 };
 
 export default formatDate;
