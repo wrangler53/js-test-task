@@ -30,7 +30,7 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  // Edit User
+  // Fill form when user clicks Edit button
   fillForm = user => {
     const updatedUser = {...this.state.user};
     user.dob = formatDateForEdit(user.dob);
@@ -38,6 +38,7 @@ class App extends Component {
     this.setState({user: updatedUser, isEditMode: true});
   };
 
+  // Edit User
   editUserHandler = event => {
     event.preventDefault();
 

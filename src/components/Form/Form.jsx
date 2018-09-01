@@ -67,6 +67,7 @@ const Form = ({addUser, editUser, user, inputChanged, isEditMode}) => {
     </div>
   );
 };
+
 Form.propTypes = {
   addUser: PropTypes.func.isRequired,
   editUser: PropTypes.func.isRequired,
