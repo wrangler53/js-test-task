@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TableHeader from '../TableHeader/TableHeader';
 import TableRow from '../TableRow/TableRow';
 
-const Table = ({usersList, deleteUser, editUser}) => (
+const Table = ({usersList, deleteUser, fillForm}) => (
   <div className="container">
     <h2>Table</h2>
     <table className="table">
@@ -15,7 +15,7 @@ const Table = ({usersList, deleteUser, editUser}) => (
             key={user.id}
             user={user}
             deleteUser={event => deleteUser(event, user.id)}
-            editUser={() => editUser(user)}
+            fillForm={() => fillForm(user)}
           />
         ))}
       </tbody>
@@ -34,7 +34,7 @@ Table.propTypes = {
     }),
   ).isRequired,
   deleteUser: PropTypes.func.isRequired,
-  editUser: PropTypes.func.isRequired,
+  fillForm: PropTypes.func.isRequired,
 };
 
 export default Table;

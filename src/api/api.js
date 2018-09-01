@@ -25,6 +25,6 @@ export const deleteUser = async userId => {
 export const updateUser = async user => {
   const updateUserEndpoint = `${usersEndpoint}/${user.id}`;
 
-  const response = await axiosInstance.put(updateUserEndpoint);
+  const response = await axiosInstance.put(updateUserEndpoint, user);
   return response.data;
 };

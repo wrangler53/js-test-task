@@ -1,17 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Form = ({addUser, newUser, inputChanged}) => (
+const Form = ({addUser, editUser, user, inputChanged, isEditMode}) => (
   <div className="container">
     <h2>Form</h2>
-    <form className="form" onSubmit={event => addUser(event)}>
+    <form
+      className="form"
+      onSubmit={
+        !isEditMode ? event => addUser(event) : event => editUser(event)
+      }
+    >
       <div className="form__item">
         <label htmlFor="first_name">First Name</label>
         <input
           type="text"
           name="first_name"
           id="first_name"
-          value={newUser.first_name}
+          value={user.first_name}
           onChange={event => inputChanged(event)}
         />
       </div>
@@ -21,7 +26,7 @@ const Form = ({addUser, newUser, inputChanged}) => (
           type="text"
           name="last_name"
           id="last_name"
-          value={newUser.last_name}
+          value={user.last_name}
           onChange={event => inputChanged(event)}
         />
       </div>
@@ -32,7 +37,7 @@ const Form = ({addUser, newUser, inputChanged}) => (
           name="dob"
           id="dob"
           placeholder="mm/dd/yyyy"
-          value={newUser.dob}
+          value={user.dob}
           onChange={event => inputChanged(event)}
         />
       </div>
@@ -42,16 +47,12 @@ const Form = ({addUser, newUser, inputChanged}) => (
           type="text"
           name="location"
           id="location"
-          value={newUser.location}
+          value={user.location}
           onChange={event => inputChanged(event)}
         />
       </div>
       <div className="form__item">
-        <input
-          type="submit"
-          value="Submit"
-          onChange={event => inputChanged(event)}
-        />
+        <input type="submit" value={!isEditMode ? 'Add user' : 'Edit User'} />
       </div>
     </form>
   </div>
@@ -59,7 +60,9 @@ const Form = ({addUser, newUser, inputChanged}) => (
 
 Form.propTypes = {
   addUser: PropTypes.func.isRequired,
-  newUser: PropTypes.shape({
+  editUser: PropTypes.func.isRequired,
+  isEditMode: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
     first_name: PropTypes.string,
     last_name: PropTypes.string,
     dob: PropTypes.string,
