@@ -20,10 +20,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetchUsers() // TODO: put it into another function
-      .then(users => {
-        this.setState({users});
-      })
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
+    fetchUsers()
+      .then(users => this.setState({users}))
       .catch(err => console.log(err));
   }
 
@@ -39,13 +41,8 @@ class App extends Component {
 
     updateUser(this.state.user)
       .then(() => {
-        this.setState({user: {...userObj}});
-
-        fetchUsers() // TODO: put it into another function
-          .then(users => {
-            this.setState({users, isEditMode: false});
-          })
-          .catch(err => console.log(err));
+        this.setState({user: {...userObj}, isEditMode: false});
+        this.getAllUsers();
       })
       .catch(err => console.log(err));
   };
@@ -75,12 +72,7 @@ class App extends Component {
     addUser(this.state.user)
       .then(() => {
         this.setState({user: {...userObj}});
-
-        fetchUsers()
-          .then(users => {
-            this.setState({users});
-          })
-          .catch(err => console.log(err));
+        this.getAllUsers();
       })
       .catch(err => console.log(err));
   };
