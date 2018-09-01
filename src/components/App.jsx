@@ -56,10 +56,15 @@ class App extends Component {
         const newUsersList = [...this.state.users].filter(
           user => user.id !== userId,
         );
+
+        if (this.state.isEditMode && userId === this.state.user.id)
+          this.setState({
+            user: {...userObj},
+            isEditMode: false,
+          });
+
         this.setState({
           users: newUsersList,
-          user: {...userObj},
-          isEditMode: false,
         });
       })
       .catch(err => console.log(err));
