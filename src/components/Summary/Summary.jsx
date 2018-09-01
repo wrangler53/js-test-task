@@ -37,8 +37,11 @@ class Summary extends Component {
       .reduce((a, b) => a + b, 0);
   };
 
-  // find longest string of First Name + Last Name
-  longestString = () => {};
+  // find longest string of First Name + Last Name pair
+  longestString = () =>
+    this.props.usersList
+      .map(user => `${user.first_name} ${user.last_name}`)
+      .reduce((a, b) => (a.length > b.length ? a : b), '');
 
   render() {
     return (
@@ -54,7 +57,7 @@ class Summary extends Component {
             {this.userAges()}
           </div>
           <div className="longest-string">
-            Longest string of first name + last name: <br />
+            Longest string of first name + last name pair: <br />
             {this.longestString()}
           </div>
         </div>
